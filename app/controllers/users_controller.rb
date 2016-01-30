@@ -10,9 +10,6 @@ class UsersController < ApplicationController
   end
 
 #localhost/users/1/
-  def new
-    @user = User.new
-  end
 
   def create
     @user = User.new(user_params)
