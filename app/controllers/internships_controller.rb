@@ -1,4 +1,5 @@
 class InternshipsController < ApplicationController
+  skip_before_filter :verify_authenticity_token
   def index
     @interns = Internship.all
     render json: @interns, status: 200
@@ -21,5 +22,9 @@ class InternshipsController < ApplicationController
       render json: @intern.errors, status: 422
     end
   end
+  private
+    def intern_params
+      params.require(:internship).permit(:position, :stipend, :duration)
+    end
 
 end
