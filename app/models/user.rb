@@ -34,6 +34,6 @@ class User < ActiveRecord::Base
     self.access_token = SecureRandom.uuid.gsub(/\-/,'')
   end
 
-  has_many :internships
+  has_many :internships, through: :internize
 
 end
