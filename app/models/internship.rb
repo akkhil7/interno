@@ -9,6 +9,8 @@
 #  stipend       :integer
 #  duration      :integer
 #  created_by_id :integer
+#  location      :string
+#  description   :string
 #
 
 class Internship < ActiveRecord::Base

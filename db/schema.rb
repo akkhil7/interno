@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160206064455) do
+ActiveRecord::Schema.define(version: 20160207155259) do
 
   create_table "companies", force: :cascade do |t|
     t.string   "name"
@@ -41,6 +41,8 @@ ActiveRecord::Schema.define(version: 20160206064455) do
     t.integer  "stipend"
     t.integer  "duration"
     t.integer  "created_by_id"
+    t.string   "location"
+    t.string   "description"
   end
 
   create_table "users", force: :cascade do |t|

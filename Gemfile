@@ -9,6 +9,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'rack-cors', :require => 'rack/cors'
 gem 'devise'
 gem 'annotate', github: 'ctran/annotate_models'
+gem 'active_model_serializers'
 group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'
