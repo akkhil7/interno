@@ -1,4 +1,9 @@
 class InternizesController < ApplicationController
+  skip_before_filter :verify_authenticity_token
+
+
+  require 'nestful'
+  require 'boxview.rb'
 
   def index
     @applied = current_user.internships
@@ -14,9 +19,33 @@ class InternizesController < ApplicationController
     end
   end
 
-  private
-    def internize_params
-      params.require(:internize).permit(:user_id,:internship_id)
+  def upload_resume
+    @resume = params[:resume]
+    BoxView.api_key = "smx1yysqp14gk4f9qvh9j5hudrpqt3of"
+
+    @path = @resume.tempfile.path
+
+
+
+    @response = BoxView::Document.multipart(filepath: @path)
+
+    @session = BoxView::Session.create(document_id: @response.parsed_response["id"])
+
+    res = @session.parsed_response["document"]["status"]
+    if res == "done" || res == "processing"
+      render json: @session, status: 200
+    else
+      logger.debug(@session)
+      render json: @session, status: 422
     end
 
+  end
+
+  private
+  def internize_params
+    params.require(:internize).permit(:user_id,:internship_id)
+  end
+
 end
+
+

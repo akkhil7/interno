@@ -29,4 +29,5 @@ Rails.application.routes.draw do
 
   post 'tokens/verify', to:'tokens#verify'
   post 'tokens/verify_token', to:'tokens#verify_token'
+  post 'internizes/upload_resume', to: 'internizes#upload_resume'
 end
