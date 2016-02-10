@@ -13,6 +13,7 @@
 #  encrypted_password     :string           default(""), not null
 #  reset_password_token   :string
 #  reset_password_sent_at :datetime
+#  resume_id              :string
 #
 # Indexes
 #
@@ -26,6 +27,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable,
          :recoverable, :validatable
 
+  #Token Auth
   before_create :update_access_token!
   require 'securerandom'
 
@@ -33,6 +35,7 @@ class User < ActiveRecord::Base
     return if access_token.present?
     self.access_token = SecureRandom.uuid.gsub(/\-/,'')
   end
+  #End of Token Auth
 
   has_many :internships, through: :internize
 

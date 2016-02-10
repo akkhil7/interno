@@ -23,6 +23,7 @@ class InternizesController < ApplicationController
     @resume = params[:resume]
     BoxView.api_key = "smx1yysqp14gk4f9qvh9j5hudrpqt3of"
 
+    user = User.find(params[:user_id])
     @path = @resume.tempfile.path
 
 
@@ -33,7 +34,10 @@ class InternizesController < ApplicationController
 
     res = @session.parsed_response["document"]["status"]
     if res == "done" || res == "processing"
-      render json: @session, status: 200
+      user.resume_id = @session.parsed_response["document"]["id"]
+      if user.save!
+        render json: @session, status: 200
+      end
     else
       logger.debug(@session)
       render json: @session, status: 422
