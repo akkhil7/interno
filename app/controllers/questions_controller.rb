@@ -1,6 +1,8 @@
 class QuestionsController < ApplicationController
   skip_before_filter :verify_authenticity_token
 
+  before_action :authenticate
+
   def update
     @payload = params[:questions]
     flag = false

@@ -15,6 +15,7 @@
 
 class Internship < ActiveRecord::Base
   belongs_to :created_by, class_name: "Company", foreign_key: :created_by_id
-  has_many :users, through: :internize
+  has_many :internizes
+  has_many :users, :through => :internizes
   has_many :questions
 end

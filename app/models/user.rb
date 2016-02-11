@@ -37,6 +37,7 @@ class User < ActiveRecord::Base
   end
   #End of Token Auth
 
-  has_many :internships, through: :internize
+  has_many :internizes
+  has_many :internships, :through => :internizes
 
 end

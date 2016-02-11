@@ -5,14 +5,22 @@ class InternizesController < ApplicationController
   require 'nestful'
   require 'boxview.rb'
 
+  before_action :authenticate
+
   def index
     @applied = current_user.internships
     render json: @applied, status: 200
   end
 
+  def applied
+    @applied = Internship.where(:user_id => params[:user_id])
+  end
+
   def create
     @internize = Internize.new(internize_params)
+    internship = Internship.find(@internize.internship_id)
     if @internize.save
+      current_user.internships << internship
       render json: @internize, status: 200
     else
       render json: @internize.errors, status:422

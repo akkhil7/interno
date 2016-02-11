@@ -12,6 +12,6 @@
 #1  1   1
 #2  1   2
 class Internize < ActiveRecord::Base
-  belongs_to :users
-  belongs_to :internships
+  belongs_to :user
+  belongs_to :internship
 end
