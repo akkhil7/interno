@@ -7,6 +7,7 @@
 #  internship_id :integer
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  condition     :string
 #
 
 #1  1   1

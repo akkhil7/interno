@@ -17,6 +17,8 @@
 
 class UsersController < ApplicationController
   skip_before_filter :verify_authenticity_token
+  require 'boxview.rb'
+
   def index
     @users = User.all
     render json: @users, status: 200
@@ -44,6 +46,22 @@ class UsersController < ApplicationController
   end
 
   def destroy
+  end
+
+  def check_resume
+    BoxView.api_key = "smx1yysqp14gk4f9qvh9j5hudrpqt3of"
+    @user = User.find(params[:id])
+
+    if @user.resume_id.nil?
+      render json: {has_resume: false}, status: 204
+    elsif !@user.resume_id.nil?
+      response = BoxView::Document.show document_id: @user.resume_id
+      @session = BoxView::Session.create(document_id: @user.resume_id)
+      res = @session.parsed_response["document"]["status"]
+      render json: @session, status: 200
+    else
+      render status: 422
+    end
   end
 
   private

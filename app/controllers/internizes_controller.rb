@@ -2,7 +2,6 @@ class InternizesController < ApplicationController
   skip_before_filter :verify_authenticity_token
 
 
-  require 'nestful'
   require 'boxview.rb'
 
   before_action :authenticate
@@ -10,10 +9,6 @@ class InternizesController < ApplicationController
   def index
     @applied = current_user.internships
     render json: @applied, status: 200
-  end
-
-  def applied
-    @applied = Internship.where(:user_id => params[:user_id])
   end
 
   def create

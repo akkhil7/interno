@@ -32,4 +32,6 @@ Rails.application.routes.draw do
   post 'tokens/verify_token', to:'tokens#verify_token'
   post 'internizes/upload_resume', to: 'internizes#upload_resume'
   put 'questions/', to: 'questions#update'
+
+  get 'users/:id/check_resume', to: 'users#check_resume'
 end
