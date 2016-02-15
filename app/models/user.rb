@@ -7,12 +7,13 @@
 #  updated_at             :datetime         not null
 #  username               :string
 #  email                  :string
-#  first_name             :string
-#  last_name              :string
 #  access_token           :string
 #  encrypted_password     :string           default(""), not null
 #  reset_password_token   :string
 #  reset_password_sent_at :datetime
+#  profile_id             :integer
+#  first_name             :string
+#  last_name              :string
 #  resume_id              :string
 #
 # Indexes
@@ -39,4 +40,5 @@ class User < ActiveRecord::Base
 
   has_many :internizes
   has_many :internships, :through => :internizes
+  has_many :conversations
 end

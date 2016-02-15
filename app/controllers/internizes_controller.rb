@@ -29,8 +29,6 @@ class InternizesController < ApplicationController
     user = User.find(params[:user_id])
     @path = @resume.tempfile.path
 
-
-
     @response = BoxView::Document.multipart(filepath: @path)
 
     @session = BoxView::Session.create(document_id: @response.parsed_response["id"])

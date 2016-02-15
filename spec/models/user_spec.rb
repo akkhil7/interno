@@ -8,6 +8,8 @@ RSpec.describe User, :type => :model do
 
   it "has an access_token on create" do
     user = User.create(email: "abcd@abcd.com")
+    puts user.errors.to_json
+    expect(user.persisted?).to eq true
     expect(user.access_token).to be_kind_of String
   end
 end

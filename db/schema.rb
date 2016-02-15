@@ -11,21 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160213204922) do
+ActiveRecord::Schema.define(version: 20160215194014) do
 
   create_table "companies", force: :cascade do |t|
     t.string   "name"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.string   "username"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email"
+    t.string   "encrypted_password"
     t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
+    t.string   "reset_password_sent_at"
   end
 
-  add_index "companies", ["email"], name: "index_companies_on_email", unique: true
-  add_index "companies", ["reset_password_token"], name: "index_companies_on_reset_password_token", unique: true
+  create_table "conversations", force: :cascade do |t|
+    t.string   "subject"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "user_id"
+    t.integer  "company_id"
+  end
 
   create_table "internizes", force: :cascade do |t|
     t.integer  "user_id"
@@ -46,6 +51,21 @@ ActiveRecord::Schema.define(version: 20160213204922) do
     t.string   "description"
   end
 
+  create_table "involvements", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "conversation_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.integer  "conversation_id"
+    t.integer  "sender_id"
+    t.text     "content"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
   create_table "questions", force: :cascade do |t|
     t.integer  "internship_id"
     t.string   "question"
@@ -59,12 +79,13 @@ ActiveRecord::Schema.define(version: 20160213204922) do
     t.datetime "updated_at",                          null: false
     t.string   "username"
     t.string   "email"
-    t.string   "first_name"
-    t.string   "last_name"
     t.string   "access_token"
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
+    t.integer  "profile_id"
+    t.string   "first_name"
+    t.string   "last_name"
     t.string   "resume_id"
   end
 
