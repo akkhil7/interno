@@ -12,9 +12,28 @@ gem 'annotate', github: 'ctran/annotate_models'
 gem 'active_model_serializers'
 gem 'nestful'
 gem 'boxview.rb'
+
 group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'
   gem 'spring'
 end
 
+group :development, :test do
+  gem 'spring-commands-rspec'
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+end
+
+group :test do
+  gem 'guard-rspec'
+  gem 'launchy'
+  gem 'faker'
+  gem 'fuubar'
+  gem 'rspec-activejob'
+  gem 'rspec-expectations'
+  gem 'database_cleaner'
+  gem 'test_after_commit'
+  gem 'shoulda'
+  gem 'email_spec'
+end
