@@ -39,5 +39,4 @@ class User < ActiveRecord::Base
 
   has_many :internizes
   has_many :internships, :through => :internizes
-
 end
