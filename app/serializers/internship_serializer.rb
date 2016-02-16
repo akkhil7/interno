@@ -1,5 +1,5 @@
 class InternshipSerializer < ActiveModel::Serializer
-  attributes :id, :position, :duration, :location, :description,
+  attributes :id, :position, :stipend, :duration, :location, :description,
               :created_by
   has_many :internizes
   has_many :questions

@@ -14,11 +14,16 @@ class InternizesController < ApplicationController
   def create
     @internize = Internize.new(internize_params)
     internship = Internship.find(@internize.internship_id)
+    @company = Company.find(internship.created_by.id)
+    @conversation = Conversation.new(:user_id => current_user.id,:company_id => @company.id )
     if @internize.save
-      current_user.internships << internship
-      render json: @internize, status: 200
+      if @conversation.save
+        render json: @internize, status: 200
+      else
+        render json: @conversation.errors, status:422
+      end
     else
-      render json: @internize.errors, status:422
+      render json: @internize.errors, status: 422
     end
   end
 

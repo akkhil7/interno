@@ -15,4 +15,5 @@
 class Internize < ActiveRecord::Base
   belongs_to :user
   belongs_to :internship
+  has_many :answers
 end

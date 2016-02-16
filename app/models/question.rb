@@ -12,4 +12,5 @@
 
 class Question < ActiveRecord::Base
   belongs_to :internship
+  has_many :answers
 end
