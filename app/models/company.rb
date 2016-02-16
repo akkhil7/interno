@@ -21,4 +21,5 @@ class Company < ActiveRecord::Base
 
   has_many :internships
   has_many :conversations
+  has_many :messages, as: :sender
 end

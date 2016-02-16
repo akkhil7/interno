@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160216125722) do
+ActiveRecord::Schema.define(version: 20160216203641) do
 
   create_table "answers", force: :cascade do |t|
     t.datetime "created_at",   null: false
@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 20160216125722) do
     t.text     "content"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.string   "sender_type"
   end
 
   create_table "questions", force: :cascade do |t|

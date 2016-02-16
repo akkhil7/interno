@@ -41,4 +41,5 @@ class User < ActiveRecord::Base
   has_many :internizes
   has_many :internships, :through => :internizes
   has_many :conversations
+  has_many :messages, as: :sender
 end
