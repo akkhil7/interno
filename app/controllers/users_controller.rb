@@ -35,7 +35,7 @@ class UsersController < ApplicationController
     if @user.save
       render json: @user, status: 200
     else
-      render @user.error, status: 422
+      render @user.errors, status: 422
     end
   end
 

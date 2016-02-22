@@ -24,7 +24,10 @@
 Rails.application.routes.draw do
   devise_for :companies, :controllers => {:registrations => :companies}
   resources :users, only: [:create,:update,:destroy,:index]
+  resources :companies, only: [:create,:update,:destroy,:index]
   devise_for :users, :controllers => {:registrations => :users}
+
+
   resources  :internships, only: [:create,:index,:destroy]
   resources :internizes, only: [:index,:create]
   resources  :conversations, only: [:create,:index,:destroy]

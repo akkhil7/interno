@@ -21,3 +21,5 @@ class MessagesController < ApplicationController
       params.require(:message).permit(:sender_id,:sender_type,:conversation_id,:content)
     end
 end
+
+
