@@ -12,6 +12,7 @@
 #  reset_password_token   :string
 #  reset_password_sent_at :string
 #  company_url            :string
+#  access_token           :string
 #
 # Indexes
 #
@@ -24,6 +25,16 @@ class Company < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable,
     :recoverable, :validatable
+
+  #Token Auth
+  before_create :update_access_token!
+  require 'securerandom'
+
+  def update_access_token!
+    return if access_token.present?
+    self.access_token = SecureRandom.uuid.gsub(/\-/,'')
+  end
+  #End of Token Auth
 
   has_many :internships
   has_many :conversations

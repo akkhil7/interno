@@ -7,12 +7,24 @@ class ApplicationController < ActionController::Base
     @current_user
   end
 
+  def current_company
+    @current_company
+  end
+
   protected
   def authenticate
     authenticate_or_request_with_http_token do |token, options|
       @current_user ||=User.find_by(access_token: token)
     end
   end
+
+  def authenticate_company
+    authenticate_or_request_with_http_token do |token, options|
+      @current_company ||=Company.find_by(access_token: token)
+    end
+  end
+
+
 
 end
 

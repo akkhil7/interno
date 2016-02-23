@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160222192421) do
+ActiveRecord::Schema.define(version: 20160223191549) do
 
   create_table "answers", force: :cascade do |t|
     t.datetime "created_at",   null: false
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20160222192421) do
     t.string   "reset_password_token"
     t.string   "reset_password_sent_at"
     t.string   "company_url"
+    t.string   "access_token"
   end
 
   add_index "companies", ["email"], name: "index_companies_on_email", unique: true

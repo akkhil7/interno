@@ -7,6 +7,8 @@ class TokensController < ApplicationController
     if @flag
       @token = @user.access_token
       render json: {token: @token}, status: 200
+    else
+      render text: "Wrong Password", status: 422
     end
   end
 
@@ -14,12 +16,28 @@ class TokensController < ApplicationController
   #if the token is valid
 
   def verify_token
-      @user = User.find_by(access_token: params[:token])
-      if @user
-        render json: @user, status: 200
-      else
-        render json: @user.errors, status: 422
-      end
+    @user = User.find_by(access_token: params[:token])
+    @company = Company.find_by(access_token: params[:token])
+    if @user
+      render json: @user, status: 200
+    elsif @company
+      render json: @company, status: 200
+    else
+      render text: "Cannot verify", status: 422
+    end
   end
+
+  def verify_company
+    @user = User.find_by(username: params[:user][:username])
+    @flag = @user.valid_password?(params[:user][:password])
+
+    if @flag
+      @token = @user.access_token
+      render json: {token: @token}, status: 200
+    else
+      render text: "Wrong Password", status: 422
+    end
+  end
+
 
 end
