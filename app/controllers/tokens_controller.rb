@@ -28,7 +28,7 @@ class TokensController < ApplicationController
   end
 
   def verify_company
-    @user = User.find_by(username: params[:user][:username])
+    @user = Company.find_by(username: params[:user][:username])
     @flag = @user.valid_password?(params[:user][:password])
 
     if @flag

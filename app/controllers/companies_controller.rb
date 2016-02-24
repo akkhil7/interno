@@ -13,7 +13,7 @@ class CompaniesController < ApplicationController
     if @company.save
       render json: @company, status: 200
     else
-      render @company.errors, status: 422
+      render @company.errors, status: 422, text: "Cannot Register"
     end
   end
 

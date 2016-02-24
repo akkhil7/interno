@@ -36,6 +36,7 @@ Rails.application.routes.draw do
 
   post 'answers/', to:'answers#create'
   post 'tokens/verify', to:'tokens#verify'
+  post 'tokens/verify_company', to:'tokens#verify_company'
   post 'tokens/verify_token', to:'tokens#verify_token'
   post 'internizes/upload_resume', to: 'internizes#upload_resume'
   put 'questions/', to: 'questions#update'
