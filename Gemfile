@@ -10,7 +10,6 @@ gem 'rack-cors', :require => 'rack/cors'
 gem 'devise'
 gem 'annotate', github: 'ctran/annotate_models'
 gem 'active_model_serializers'
-gem 'nestful'
 gem 'boxview.rb'
 
 group :development, :test do

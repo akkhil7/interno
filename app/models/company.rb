@@ -36,7 +36,7 @@ class Company < ActiveRecord::Base
   end
   #End of Token Auth
 
-  has_many :internships
+  has_many :internships, foreign_key: :created_by_id
   has_many :conversations
   has_many :messages, as: :sender
 

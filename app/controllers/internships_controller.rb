@@ -20,6 +20,11 @@ class InternshipsController < ApplicationController
     render json: @interns, status: 200
   end
 
+  def company_internships
+    @created = current_company.internships
+    render json: @created, status: 200
+  end
+
   def create
     @intern = Internship.new(intern_params)
     if @intern.save!
@@ -38,9 +43,16 @@ class InternshipsController < ApplicationController
     end
   end
 
+  def find_internizes
+    @internship = Internship.find(params[:id])
+    @internizes = Internize.where(:internship_id => @internship.id)
+    render json: {internizes: @internizes}, status: 200
+  end
+
+
   private
     def intern_params
-      params.require(:internship).permit(:position, :stipend, :duration)
+      params.require(:internship).permit(:position, :created_by_id, :stipend, :duration)
     end
 
 end
