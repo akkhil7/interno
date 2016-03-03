@@ -4,11 +4,18 @@ class InternizesController < ApplicationController
 
   require 'boxview.rb'
 
-  before_action :authenticate
+  before_action :authenticate, except: [:show]
+
+  before_action :authenticate_company, only: [:show]
 
   def index
     @applied = current_user.internships
     render json: @applied, status: 200
+  end
+
+  def show
+    @internize = Internize.find(params[:id])
+    render json: @internize, status: 200
   end
 
   def create

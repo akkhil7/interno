@@ -29,12 +29,11 @@ Rails.application.routes.draw do
 
 
   resources  :internships, only: [:create,:index,:destroy]
-  resources :internizes, only: [:index,:create]
+  resources :internizes, only: [:index,:create, :show]
   resources  :conversations, only: [:create,:index,:destroy]
   resources :messages, only: [:index,:create]
 
   get 'internships/company_internships', to: 'internships#company_internships'
-  get 'internships/:id/find_internizes', to: 'internships#find_internizes'
   post 'answers/', to:'answers#create'
   post 'tokens/verify', to:'tokens#verify'
   post 'tokens/verify_company', to:'tokens#verify_company'
