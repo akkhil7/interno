@@ -27,11 +27,13 @@ Rails.application.routes.draw do
   resources :companies, only: [:create,:update,:destroy,:index]
   devise_for :users, :controllers => {:registrations => :users}
 
+  get 'internizes/all_applications', to: 'internizes#all_applications'
 
   resources  :internships, only: [:create,:index,:destroy]
   resources :internizes, only: [:index,:create, :show]
   resources  :conversations, only: [:create,:index,:destroy]
   resources :messages, only: [:index,:create]
+
 
   get 'internships/company_internships', to: 'internships#company_internships'
   post 'answers/', to:'answers#create'

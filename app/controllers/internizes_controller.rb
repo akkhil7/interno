@@ -4,9 +4,9 @@ class InternizesController < ApplicationController
 
   require 'boxview.rb'
 
-  before_action :authenticate, except: [:show]
+  before_action :authenticate, except: [:show, :all_applications]
 
-  before_action :authenticate_company, only: [:show]
+  before_action :authenticate_company, only: [:show, :all_applications]
 
   def index
     @applied = current_user.internships
@@ -16,6 +16,16 @@ class InternizesController < ApplicationController
   def show
     @internize = Internize.find(params[:id])
     render json: @internize, status: 200
+  end
+
+  def all_applications
+    @internships = current_company.internships
+    @internizes = Array.new
+    @internships.each do |internship|
+      application = internship.internizes
+      @internizes.push(application)
+    end
+    render json: @internizes, status: 200
   end
 
   def create
