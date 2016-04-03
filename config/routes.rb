@@ -35,6 +35,7 @@ Rails.application.routes.draw do
   resources :messages, only: [:index,:create]
 
 
+  get 'conversations/company_conversations', to: 'conversations#company_conversations'
   get 'internships/company_internships', to: 'internships#company_internships'
   post 'answers/', to:'answers#create'
   post 'tokens/verify', to:'tokens#verify'

@@ -13,7 +13,9 @@
 class InternshipsController < ApplicationController
   skip_before_filter :verify_authenticity_token
 
-  before_action :authenticate_company
+  before_action :authenticate_company, :except => [:index]
+
+  before_action :authenticate_both, :only => [:index]
 
   def index
     @interns = Internship.all

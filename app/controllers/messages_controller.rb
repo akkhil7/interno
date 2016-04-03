@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
   skip_before_filter :verify_authenticity_token
-  before_action :authenticate
+  before_action :auth_both
 
   def index
     @messages = current_user.messages
@@ -8,7 +8,6 @@ class MessagesController < ApplicationController
 
   def create
     @message = Message.new(message_params)
-    #@conversation = Conversation.where(:id => @message[:conversation_id]).first
     if @message.save
       render json: @message, status: 200
     else
